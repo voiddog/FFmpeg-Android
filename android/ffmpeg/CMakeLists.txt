@@ -17,7 +17,114 @@ add_library( # Sets the name of the library.
             SHARED
 
             # Provides a relative path to your source file(s).
-            src/main/cpp/ffmpeg-lib.c)
+             src/main/cpp/cmdutils.c
+             src/main/cpp/ffmpeg.c
+             src/main/cpp/ffmpeg_filter.c
+             src/main/cpp/ffmpeg_opt.c
+             src/main/cpp/ffmpeg-lib.c)
+
+add_library(
+         avcodec
+         SHARED
+         IMPORTED
+         )
+set_target_properties(
+         avcodec
+         PROPERTIES IMPORTED_LOCATION
+         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavcodec-57.so
+         )
+
+add_library(
+          avdevice
+          SHARED
+          IMPORTED
+          )
+set_target_properties(
+          avdevice
+          PROPERTIES IMPORTED_LOCATION
+          /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavdevice-57.so
+          )
+
+add_library(
+         avfilter
+         SHARED
+         IMPORTED
+          )
+set_target_properties(
+         avfilter
+         PROPERTIES IMPORTED_LOCATION
+        /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavfilter-6.so
+     )
+
+add_library(
+         avformat
+         SHARED
+         IMPORTED
+         )
+set_target_properties(
+         avformat
+         PROPERTIES IMPORTED_LOCATION
+         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavformat-57.so
+         )
+
+add_library(
+        avresample
+        SHARED
+        IMPORTED
+        )
+set_target_properties(
+        avresample
+        PROPERTIES IMPORTED_LOCATION
+        /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavresample-3.so
+        )
+
+add_library(
+         avutil
+         SHARED
+         IMPORTED
+         )
+set_target_properties(
+         avutil
+         PROPERTIES IMPORTED_LOCATION
+         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavutil-55.so
+         )
+
+add_library(
+        postproc
+        SHARED
+        IMPORTED
+        )
+set_target_properties(
+        postproc
+        PROPERTIES IMPORTED_LOCATION
+        /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libpostproc-54.so
+        )
+
+add_library(
+         swresample
+         SHARED
+         IMPORTED
+         )
+set_target_properties(
+         swresample
+         PROPERTIES IMPORTED_LOCATION
+         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libswresample-2.so
+         )
+
+add_library(
+         swscale
+         SHARED
+         IMPORTED
+         )
+set_target_properties(
+         swscale
+         PROPERTIES IMPORTED_LOCATION
+         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libswscale-4.so
+         )
+
+include_directories(
+    ../../ffmpeg
+)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -38,6 +145,15 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
             ffmpeg-lib
+            avcodec
+            avfilter
+            avformat
+            avutil
+            swscale
+            swresample
+            avdevice
+            avresample
+            postproc
 
             # Links the target library to the log library
             # included in the NDK.

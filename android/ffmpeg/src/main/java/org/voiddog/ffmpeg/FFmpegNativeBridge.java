@@ -9,6 +9,11 @@ package org.voiddog.ffmpeg;
 
 
 public class FFmpegNativeBridge {
+
+    static {
+        System.loadLibrary("ffmpeg-lib");
+    }
+
     /**
      * 执行指令
      * @param command
