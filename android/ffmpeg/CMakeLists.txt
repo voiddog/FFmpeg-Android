@@ -23,104 +23,106 @@ add_library( # Sets the name of the library.
              src/main/cpp/ffmpeg_opt.c
              src/main/cpp/ffmpeg-lib.c)
 
-add_library(
-         avcodec
-         SHARED
-         IMPORTED
-         )
-set_target_properties(
-         avcodec
-         PROPERTIES IMPORTED_LOCATION
-         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavcodec-57.so
-         )
+set(FFMPEG_LIB_DIR /Users/qigengxin/Documents/Github/FFmpegAndroid/build/lib/ffmpeg/armv7-a/lib)
 
 add_library(
-          avdevice
-          SHARED
-          IMPORTED
-          )
+    avcodec
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-          avdevice
-          PROPERTIES IMPORTED_LOCATION
-          /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavdevice-57.so
-          )
+    avcodec
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libavcodec-57.so
+)
 
 add_library(
-         avfilter
-         SHARED
-         IMPORTED
-          )
+    avdevice
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-         avfilter
-         PROPERTIES IMPORTED_LOCATION
-        /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavfilter-6.so
-     )
+    avdevice
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libavdevice-57.so
+)
 
 add_library(
-         avformat
-         SHARED
-         IMPORTED
-         )
+    avfilter
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-         avformat
-         PROPERTIES IMPORTED_LOCATION
-         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavformat-57.so
-         )
+    avfilter
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libavfilter-6.so
+)
 
 add_library(
-        avresample
-        SHARED
-        IMPORTED
-        )
+    avformat
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-        avresample
-        PROPERTIES IMPORTED_LOCATION
-        /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavresample-3.so
-        )
+    avformat
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libavformat-57.so
+)
 
 add_library(
-         avutil
-         SHARED
-         IMPORTED
-         )
+    avresample
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-         avutil
-         PROPERTIES IMPORTED_LOCATION
-         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libavutil-55.so
-         )
+    avresample
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libavresample-3.so
+)
 
 add_library(
-        postproc
-        SHARED
-        IMPORTED
-        )
+    avutil
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-        postproc
-        PROPERTIES IMPORTED_LOCATION
-        /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libpostproc-54.so
-        )
+    avutil
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libavutil-55.so
+)
 
 add_library(
-         swresample
-         SHARED
-         IMPORTED
-         )
+    postproc
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-         swresample
-         PROPERTIES IMPORTED_LOCATION
-         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libswresample-2.so
-         )
+    postproc
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libpostproc-54.so
+)
 
 add_library(
-         swscale
-         SHARED
-         IMPORTED
-         )
+    swresample
+    SHARED
+    IMPORTED
+)
 set_target_properties(
-         swscale
-         PROPERTIES IMPORTED_LOCATION
-         /Users/qigengxin/Documents/Github/ffmpeg/FFmpegAndroid/app/src/main/cpp/libswscale-4.so
-         )
+    swresample
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libswresample-2.so
+)
+
+add_library(
+    swscale
+    SHARED
+    IMPORTED
+)
+set_target_properties(
+    swscale
+    PROPERTIES IMPORTED_LOCATION
+    ${FFMPEG_LIB_DIR}/libswscale-4.so
+)
 
 include_directories(
     ../../ffmpeg
@@ -142,18 +144,17 @@ find_library( # Sets the name of the path variable.
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
-
 target_link_libraries( # Specifies the target library.
             ffmpeg-lib
             avcodec
-            avfilter
-            avformat
             avutil
+            avfilter
             swscale
             swresample
-            avdevice
             avresample
             postproc
+            avformat
+            avdevice
 
             # Links the target library to the log library
             # included in the NDK.
