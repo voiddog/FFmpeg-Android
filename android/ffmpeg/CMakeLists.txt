@@ -21,7 +21,9 @@ add_library( # Sets the name of the library.
              src/main/cpp/ffmpeg.c
              src/main/cpp/ffmpeg_filter.c
              src/main/cpp/ffmpeg_opt.c
-             src/main/cpp/ffmpeg-lib.c)
+             src/main/cpp/ffmpeg_lib.c
+             src/main/cpp/ffmpeg_thread.c
+             src/main/cpp/ffmpeg_hw.c)
 
 set(FFMPEG_LIB_DIR /Users/qigengxin/Documents/Github/FFmpegAndroid/build/lib/ffmpeg/armv7-a/lib)
 
@@ -33,7 +35,7 @@ add_library(
 set_target_properties(
     avcodec
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libavcodec-57.so
+    ${FFMPEG_LIB_DIR}/libavcodec.so
 )
 
 add_library(
@@ -44,7 +46,7 @@ add_library(
 set_target_properties(
     avdevice
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libavdevice-57.so
+    ${FFMPEG_LIB_DIR}/libavdevice.so
 )
 
 add_library(
@@ -55,7 +57,7 @@ add_library(
 set_target_properties(
     avfilter
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libavfilter-6.so
+    ${FFMPEG_LIB_DIR}/libavfilter.so
 )
 
 add_library(
@@ -66,7 +68,7 @@ add_library(
 set_target_properties(
     avformat
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libavformat-57.so
+    ${FFMPEG_LIB_DIR}/libavformat.so
 )
 
 add_library(
@@ -77,7 +79,7 @@ add_library(
 set_target_properties(
     avresample
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libavresample-3.so
+    ${FFMPEG_LIB_DIR}/libavresample.so
 )
 
 add_library(
@@ -88,7 +90,7 @@ add_library(
 set_target_properties(
     avutil
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libavutil-55.so
+    ${FFMPEG_LIB_DIR}/libavutil.so
 )
 
 add_library(
@@ -99,7 +101,7 @@ add_library(
 set_target_properties(
     postproc
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libpostproc-54.so
+    ${FFMPEG_LIB_DIR}/libpostproc.so
 )
 
 add_library(
@@ -110,7 +112,7 @@ add_library(
 set_target_properties(
     swresample
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libswresample-2.so
+    ${FFMPEG_LIB_DIR}/libswresample.so
 )
 
 add_library(
@@ -121,7 +123,7 @@ add_library(
 set_target_properties(
     swscale
     PROPERTIES IMPORTED_LOCATION
-    ${FFMPEG_LIB_DIR}/libswscale-4.so
+    ${FFMPEG_LIB_DIR}/libswscale.so
 )
 
 include_directories(

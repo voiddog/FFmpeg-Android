@@ -54,8 +54,10 @@
 #include "libavutil/ffversion.h"
 #include "libavutil/version.h"
 #include "cmdutils.h"
+#include "ffmpeg_thread.h"
 #if CONFIG_NETWORK
 #include "libavformat/network.h"
+
 #endif
 #if HAVE_SYS_RESOURCE_H
 #include <sys/time.h>
@@ -132,12 +134,13 @@ void register_exit(void (*cb)(int ret))
     program_exit = cb;
 }
 
-int exit_program(int ret)
+void exit_program(int ret)
 {
     if (program_exit)
         program_exit(ret);
 
-    return ret;
+    ffmpeg_thread_exit(ret);
+//    exit(ret);
 }
 
 double parse_number_or_die(const char *context, const char *numstr, int type,
@@ -2071,7 +2074,7 @@ AVDictionary **setup_find_stream_info_opts(AVFormatContext *s,
         return NULL;
     }
     for (i = 0; i < s->nb_streams; i++)
-        opts[i] = (codec_opts, s->streams[i]->codecpar->codec_id,
+        opts[i] = filter_codec_opts(codec_opts, s->streams[i]->codecpar->codec_id,
                                     s, s->streams[i], NULL);
     return opts;
 }

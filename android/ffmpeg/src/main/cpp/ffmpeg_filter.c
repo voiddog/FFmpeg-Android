@@ -1046,9 +1046,15 @@ int configure_filtergraph(FilterGraph *fg)
     if ((ret = avfilter_graph_parse2(fg->graph, graph_desc, &inputs, &outputs)) < 0)
         goto fail;
 
-    if (hw_device_ctx) {
+    if (filter_hw_device || hw_device_ctx) {
+        AVBufferRef *device = filter_hw_device ? filter_hw_device->device_ref
+                                               : hw_device_ctx;
         for (i = 0; i < fg->graph->nb_filters; i++) {
-            fg->graph->filters[i]->hw_device_ctx = av_buffer_ref(hw_device_ctx);
+            fg->graph->filters[i]->hw_device_ctx = av_buffer_ref(device);
+            if (!fg->graph->filters[i]->hw_device_ctx) {
+                ret = AVERROR(ENOMEM);
+                goto fail;
+            }
         }
     }
 
@@ -1177,7 +1183,7 @@ int ifilter_parameters_from_frame(InputFilter *ifilter, const AVFrame *frame)
     ifilter->sample_aspect_ratio = frame->sample_aspect_ratio;
 
     ifilter->sample_rate         = frame->sample_rate;
-    ifilter->channels            = av_frame_get_channels(frame);
+    ifilter->channels            = frame->channels;
     ifilter->channel_layout      = frame->channel_layout;
 
     if (frame->hw_frames_ctx) {
