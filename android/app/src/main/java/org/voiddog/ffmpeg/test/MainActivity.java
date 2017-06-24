@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     "-y",
                     "-c:v", "libx264",
                     "-c:a", "aac",
-                    "-vf", "scale=480:-2",
+                    "-vf", "scale=640:-2",
                     "-preset", "ultrafast",
                     "-crf", "28",
                     "-b:a", "128k",

@@ -5,6 +5,7 @@
 #include <jni.h>
 #include "ffmpeg.h"
 #include "ffmpeg_thread.h"
+#include "libavcodec/jni.h"
 
 #ifdef ANDROID
 
@@ -23,6 +24,12 @@
 #define ALOGD printf
 #define ALOGW printf
 #endif
+
+// load JNI
+jint JNI_OnLoad(JavaVM* vm, void* reserved){
+    av_jni_set_java_vm(vm, NULL);
+    return JNI_VERSION_1_6;
+}
 
 // 是否启用 debug 默认不启用
 jboolean FFMPEG_ANDROID_DEBUG = 0;
