@@ -5,3 +5,4 @@
 ## 2017-06-23 更新
 * 添加 MediaCodec 硬解码支持（然而并没有块多少，只是cpu使用率下降了）
 * 添加线程支持
+> [文章链接](https://voiddog.github.io/2017/06/24/%E7%BB%99FFmpeg%E5%8A%A0%E4%B8%8AMediaCodec%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%94%AF%E6%8C%81/)
