@@ -33,14 +33,14 @@ public class MainActivity extends AppCompatActivity {
             // you need replace to your source
             long startTime = System.currentTimeMillis();
             int ret = FFmpegNativeBridge.runCommand(new String[]{"ffmpeg",
-                    "-i", "/storage/emulated/0/DCIM/Camera/VID_20170527_175421.mp4",
+                    "-i", "/storage/emulated/0/AzRecorderFree/2017_10_13_14_57_59.mp4",
                     "-y",
                     "-c:v", "libx264",
                     "-c:a", "aac",
-                    "-vf", "scale=640:-2",
+                    "-vf", "scale=-2:640",
                     "-preset", "ultrafast",
-                    "-crf", "28",
-                    "-b:a", "128k",
+                    "-b:v", "450k",
+                    "-b:a", "96k",
                     "/storage/emulated/0/Download/a.mp4"});
             System.out.println("ret: " + ret + ", time: " + (System.currentTimeMillis() - startTime));
         }

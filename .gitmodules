@@ -1,6 +1,6 @@
 [submodule "ffmpeg"]
 	path = ffmpeg
-	url = https://git.ffmpeg.org/ffmpeg.git
+	url = git@github.com:voiddog/FFmpeg.git
 [submodule "x264"]
 	path = x264
-	url = http://git.videolan.org/git/x264.git
+	url = git@github.com:voiddog/x264.git
