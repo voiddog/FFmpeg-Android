@@ -17,7 +17,6 @@
 .*.swp
 .depend
 .DS_Store
-config.h
 config.mak
 config.log
 x264_config.h
