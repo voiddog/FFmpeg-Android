@@ -25,7 +25,7 @@ add_library( # Sets the name of the library.
              src/main/cpp/ffmpeg_thread.c
              src/main/cpp/ffmpeg_hw.c)
 
-set(FFMPEG_LIB_DIR /Users/qigengxin/Documents/Github/FFmpegAndroid/android/ffmpeg/src/main/jniLibs/armeabi-v7a)
+set(FFMPEG_LIB_DIR ${CMAKE_SOURCE_DIR}/src/main/jniLibs/armeabi-v7a)
 
 add_library(
     avcodec
